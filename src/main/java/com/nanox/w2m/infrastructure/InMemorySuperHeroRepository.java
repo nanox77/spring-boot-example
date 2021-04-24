@@ -27,4 +27,9 @@ public class InMemorySuperHeroRepository implements SuperHeroRepository {
     public Optional<SuperHero> getById(String superHeroId) {
         return Optional.ofNullable(superHeroMap.get(superHeroId));
     }
+
+    @Override
+    public Optional<SuperHero> delete(String id) {
+        return Optional.ofNullable(this.superHeroMap.remove(id));
+    }
 }

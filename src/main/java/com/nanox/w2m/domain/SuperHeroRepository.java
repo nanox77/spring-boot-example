@@ -11,4 +11,5 @@ public interface SuperHeroRepository {
 
     Optional<SuperHero> getById(String id);
 
+    Optional<SuperHero> delete(String id);
 }
