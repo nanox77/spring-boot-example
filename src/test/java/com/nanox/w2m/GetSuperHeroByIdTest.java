@@ -20,8 +20,8 @@ public class GetSuperHeroByIdTest {
     @Before
     public void setUp() {
         superHeroRepository = new InMemorySuperHeroRepository();
-        superHeroRepository.add(new SuperHero(ID_1));
-        superHeroRepository.add(new SuperHero(ID_2));
+        superHeroRepository.add(new SuperHero(ID_1, "Superman"));
+        superHeroRepository.add(new SuperHero(ID_2, "Spiderman"));
     }
 
     @Test

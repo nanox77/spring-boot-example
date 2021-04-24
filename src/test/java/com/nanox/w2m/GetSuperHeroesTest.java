@@ -31,8 +31,8 @@ public class GetSuperHeroesTest {
 
     @Test
     public void givenTwoSuperHeroesWhenGetSuperHeroesThenReturnAllSuperHeroes() {
-        superHeroRepository.add(new SuperHero(ID_1));
-        superHeroRepository.add(new SuperHero(ID_2));
+        superHeroRepository.add(new SuperHero(ID_1, "Superman"));
+        superHeroRepository.add(new SuperHero(ID_2, "Spiderman"));
 
         GetSuperHeroes getSuperHeroes = new GetSuperHeroes(superHeroRepository);
 
