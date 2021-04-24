@@ -16,6 +16,6 @@ public class GetSuperHeroById {
 
     public Optional<SuperHero> execute(String superHeroId) {
         Objects.requireNonNull(superHeroId, "Id is required");
-        return superHeroRepository.getAll().stream().filter(superHero -> superHero.getId().equals(superHeroId)).findFirst();
+        return superHeroRepository.getById(superHeroId);
     }
 }

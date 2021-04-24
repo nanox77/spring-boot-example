@@ -12,9 +12,9 @@ import java.util.Optional;
 
 public class GetSuperHeroByIdTest {
 
-    public static final String ID_1 = "ID-1";
-    public static final String ID_2 = "ID-2";
-    public static final String ID_3 = "ID-3";
+    private static final String ID_1 = "ID-1";
+    private static final String ID_2 = "ID-2";
+    private static final String ID_3 = "ID-3";
     private SuperHeroRepository superHeroRepository;
 
     @Before

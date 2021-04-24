@@ -12,8 +12,8 @@ import java.util.List;
 
 public class GetSuperHeroesTest {
 
-    public static final String ID_1 = "ID-1";
-    public static final String ID_2 = "ID-2";
+    private static final String ID_1 = "ID-1";
+    private static final String ID_2 = "ID-2";
     private SuperHeroRepository superHeroRepository;
 
     @Before
