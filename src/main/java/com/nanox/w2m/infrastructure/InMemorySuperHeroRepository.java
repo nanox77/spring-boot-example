@@ -29,7 +29,7 @@ public class InMemorySuperHeroRepository implements SuperHeroRepository {
     }
 
     @Override
-    public Optional<SuperHero> delete(String id) {
-        return Optional.ofNullable(this.superHeroMap.remove(id));
+    public void delete(SuperHero superHero) {
+        this.superHeroMap.remove(superHero.getId());
     }
 }

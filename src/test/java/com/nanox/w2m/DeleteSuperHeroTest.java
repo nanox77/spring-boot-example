@@ -28,19 +28,20 @@ public class DeleteSuperHeroTest {
     public void givenSuperHeroesWhenDeleteByIdThenSuperHeroIsDeleted() {
         DeleteSuperHero deleteSuperHero = new DeleteSuperHero(superHeroRepository);
 
-        Optional<SuperHero> superHeroDeleted = deleteSuperHero.execute(ID_1);
+        deleteSuperHero.execute(ID_1);
 
-        Assert.assertTrue(superHeroDeleted.isPresent());
+        Optional<SuperHero> superHeroDeleted = superHeroRepository.getById(ID_1);
+        Assert.assertFalse(superHeroDeleted.isPresent());
         Assert.assertEquals(1, superHeroRepository.getAll().size());
     }
-
 
     @Test
     public void givenSuperHeroesWhenDeleteByUnknownIdThenEmpty() {
         DeleteSuperHero deleteSuperHero = new DeleteSuperHero(superHeroRepository);
 
-        Optional<SuperHero> superHeroDeleted = deleteSuperHero.execute(ID_3);
+        deleteSuperHero.execute(ID_3);
 
+        Optional<SuperHero> superHeroDeleted = superHeroRepository.getById(ID_3);
         Assert.assertFalse(superHeroDeleted.isPresent());
         Assert.assertEquals(2, superHeroRepository.getAll().size());
     }

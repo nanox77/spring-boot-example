@@ -1,9 +1,6 @@
 package com.nanox.w2m.actions;
 
-import com.nanox.w2m.domain.SuperHero;
 import com.nanox.w2m.domain.SuperHeroRepository;
-
-import java.util.Optional;
 
 public class DeleteSuperHero {
 
@@ -14,7 +11,7 @@ public class DeleteSuperHero {
     }
 
 
-    public Optional<SuperHero> execute(String superHeroId) {
-        return superHeroRepository.delete(superHeroId);
+    public void execute(String superHeroId) {
+        superHeroRepository.getById(superHeroId).ifPresent(superHeroRepository::delete);
     }
 }
