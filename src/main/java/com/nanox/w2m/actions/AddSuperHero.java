@@ -3,6 +3,7 @@ package com.nanox.w2m.actions;
 import com.nanox.w2m.domain.SuperHero;
 import com.nanox.w2m.domain.SuperHeroRepository;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class AddSuperHero {
@@ -13,6 +14,7 @@ public class AddSuperHero {
     }
 
     public SuperHero execute(String name) {
+        Objects.requireNonNull(name, "Name is required");
         SuperHero superHero = new SuperHero(UUID.randomUUID().toString(), name);
         this.superHeroRepository.add(superHero);
         return superHero;

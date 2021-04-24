@@ -42,7 +42,7 @@ public class GetSuperHeroByIdTest {
     }
 
     @Test
-    public void givenSuperHeroesWhenIdIsNullThenReturnEmpty() {
+    public void givenSuperHeroesWhenIdIsNullThenThrowException() {
         GetSuperHeroById getSuperHeroById = new GetSuperHeroById(superHeroRepository);
 
         Exception exception = Assert.assertThrows(NullPointerException.class, () -> getSuperHeroById.execute(null));

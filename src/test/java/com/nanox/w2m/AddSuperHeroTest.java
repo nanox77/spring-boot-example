@@ -29,4 +29,14 @@ public class AddSuperHeroTest {
         Assert.assertEquals(1, superHeroRepository.getAll().size());
     }
 
+    @Test
+    public void givenInvalidParamWhenAddSuperHeroThenThrowException() {
+        AddSuperHero addSuperHero = new AddSuperHero(superHeroRepository);
+
+        Exception exception = Assert.assertThrows(NullPointerException.class, () -> addSuperHero.execute(null));
+
+        Assert.assertTrue(exception.getMessage().contains("Name is required"));
+        Assert.assertTrue(superHeroRepository.getAll().isEmpty());
+    }
+
 }
