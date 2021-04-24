@@ -12,6 +12,8 @@ import java.util.List;
 
 public class GetSuperHeroesTest {
 
+    public static final String ID_1 = "ID-1";
+    public static final String ID_2 = "ID-2";
     private SuperHeroRepository superHeroRepository;
 
     @Before
@@ -20,7 +22,7 @@ public class GetSuperHeroesTest {
     }
 
     @Test
-    public void whenGetHeroesThenReturnEmptyList() {
+    public void whenGetSuperHeroesThenReturnEmptyList() {
         GetSuperHeroes getSuperHeroes = new GetSuperHeroes(superHeroRepository);
 
         List<SuperHero> superHeroes = getSuperHeroes.execute();
@@ -28,9 +30,9 @@ public class GetSuperHeroesTest {
     }
 
     @Test
-    public void givenTwoHeroesWhenGetHeroesThenReturnAllHeroes() {
-        superHeroRepository.add(new SuperHero());
-        superHeroRepository.add(new SuperHero());
+    public void givenTwoSuperHeroesWhenGetSuperHeroesThenReturnAllSuperHeroes() {
+        superHeroRepository.add(new SuperHero(ID_1));
+        superHeroRepository.add(new SuperHero(ID_2));
 
         GetSuperHeroes getSuperHeroes = new GetSuperHeroes(superHeroRepository);
 
