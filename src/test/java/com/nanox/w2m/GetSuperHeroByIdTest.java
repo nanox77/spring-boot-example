@@ -41,4 +41,12 @@ public class GetSuperHeroByIdTest {
         Assert.assertFalse(superHeroOptional.isPresent());
     }
 
+    @Test
+    public void givenSuperHeroesWhenIdIsNullThenReturnEmpty() {
+        GetSuperHeroById getSuperHeroById = new GetSuperHeroById(superHeroRepository);
+
+        Exception exception = Assert.assertThrows(NullPointerException.class, () -> getSuperHeroById.execute(null));
+
+        Assert.assertTrue(exception.getMessage().contains("Id is required"));
+    }
 }
