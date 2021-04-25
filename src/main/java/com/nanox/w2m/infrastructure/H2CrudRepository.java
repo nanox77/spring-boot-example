@@ -1,7 +1,8 @@
 package com.nanox.w2m.infrastructure;
 
-import com.nanox.w2m.domain.SuperHero;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface H2CrudRepository extends CrudRepository<SuperHero, String> {
+@Repository
+public interface H2CrudRepository extends CrudRepository<SuperHeroEntity, String> {
 }

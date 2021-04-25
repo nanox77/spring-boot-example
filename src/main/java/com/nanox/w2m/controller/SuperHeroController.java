@@ -3,12 +3,11 @@ package com.nanox.w2m.controller;
 import com.nanox.w2m.actions.*;
 import com.nanox.w2m.controller.requests.UpdateSuperHeroRequest;
 import com.nanox.w2m.domain.SuperHero;
-import com.nanox.w2m.domain.SuperHeroRepository;
-import com.nanox.w2m.infrastructure.InMemorySuperHeroRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,20 +18,20 @@ import java.util.Optional;
 )
 public class SuperHeroController {
 
-    private final GetSuperHeroes getSuperHeroes;
-    private final GetSuperHeroById getSuperHeroById;
-    private final GetSuperHeroByName getSuperHeroByName;
-    private final DeleteSuperHero deleteSuperHero;
-    private final UpdateSuperHero updateSuperHero;
+    @Resource(name = "getSuperHeroById")
+    private GetSuperHeroById getSuperHeroById;
 
-    public SuperHeroController() {
-        SuperHeroRepository superHeroRepository = new InMemorySuperHeroRepository();
-        getSuperHeroes = new GetSuperHeroes(superHeroRepository);
-        getSuperHeroById = new GetSuperHeroById(superHeroRepository);
-        getSuperHeroByName = new GetSuperHeroByName(superHeroRepository);
-        deleteSuperHero = new DeleteSuperHero(superHeroRepository);
-        updateSuperHero = new UpdateSuperHero(superHeroRepository);
-    }
+    @Resource(name = "getSuperHeroByName")
+    private GetSuperHeroByName getSuperHeroByName;
+
+    @Resource(name = "deleteSuperHero")
+    private DeleteSuperHero deleteSuperHero;
+
+    @Resource(name = "updateSuperHero")
+    private UpdateSuperHero updateSuperHero;
+
+    @Resource(name = "getSuperHeroes")
+    private GetSuperHeroes getSuperHeroes;
 
     @GetMapping(value = "/superheroes")
     public ResponseEntity<List<SuperHero>> getAll() {
