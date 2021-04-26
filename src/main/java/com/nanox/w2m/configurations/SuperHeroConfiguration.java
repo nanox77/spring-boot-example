@@ -1,4 +1,4 @@
-package com.nanox.w2m.configuration;
+package com.nanox.w2m.configurations;
 
 
 import com.nanox.w2m.actions.*;
@@ -13,7 +13,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableSwagger2
 @Configuration
 @EnableAutoConfiguration
 @EnableTransactionManagement
@@ -54,5 +60,14 @@ public class SuperHeroConfiguration {
     @Bean
     public UpdateSuperHero updateSuperHero(SuperHeroRepository h2SuperHeroRepository) {
         return new UpdateSuperHero(h2SuperHeroRepository);
+    }
+
+    @Bean
+    public Docket apiDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.nanox.w2m.controller"))
+                .paths(PathSelectors.any())
+                .build();
     }
 }
