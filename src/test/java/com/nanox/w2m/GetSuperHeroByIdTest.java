@@ -3,6 +3,7 @@ package com.nanox.w2m;
 import com.nanox.w2m.actions.GetSuperHeroById;
 import com.nanox.w2m.domain.SuperHero;
 import com.nanox.w2m.domain.SuperHeroRepository;
+import com.nanox.w2m.exceptions.InvalidInputException;
 import com.nanox.w2m.infrastructure.InMemorySuperHeroRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class GetSuperHeroByIdTest {
     public void givenSuperHeroesWhenIdIsNullThenThrowException() {
         GetSuperHeroById getSuperHeroById = new GetSuperHeroById(superHeroRepository);
 
-        Exception exception = Assert.assertThrows(NullPointerException.class, () -> getSuperHeroById.execute(null));
+        Exception exception = Assert.assertThrows(InvalidInputException.class, () -> getSuperHeroById.execute(null));
 
         Assert.assertTrue(exception.getMessage().contains("Id is required"));
     }

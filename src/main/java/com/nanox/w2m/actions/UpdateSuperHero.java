@@ -2,8 +2,8 @@ package com.nanox.w2m.actions;
 
 import com.nanox.w2m.domain.SuperHero;
 import com.nanox.w2m.domain.SuperHeroRepository;
+import com.nanox.w2m.exceptions.InvalidInputException;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateSuperHero {
@@ -14,8 +14,8 @@ public class UpdateSuperHero {
     }
 
     public void execute(String superHeroId, String superHeroName) {
-        Objects.requireNonNull(superHeroId, "Id is required");
-        Objects.requireNonNull(superHeroName, "Name is required");
+        if (superHeroId == null || superHeroId.isEmpty()) throw new InvalidInputException("Id is required");
+        if (superHeroName == null || superHeroName.isEmpty()) throw new InvalidInputException("Name is required");
 
         Optional<SuperHero> superHeroOptional = this.superHeroRepository.getById(superHeroId);
         superHeroOptional.ifPresent(superHero -> {

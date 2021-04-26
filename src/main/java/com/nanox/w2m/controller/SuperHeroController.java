@@ -3,6 +3,7 @@ package com.nanox.w2m.controller;
 import com.nanox.w2m.actions.*;
 import com.nanox.w2m.controller.requests.UpdateSuperHeroRequest;
 import com.nanox.w2m.domain.SuperHero;
+import com.nanox.w2m.exceptions.SuperHeroNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,11 +40,11 @@ public class SuperHeroController {
         return ResponseEntity.ok().body(superHeroes);
     }
 
-    @GetMapping(value = "/superheroes/{id}")
+    @GetMapping(value = "/superhero/{id}")
     public ResponseEntity<SuperHero> getById(@PathVariable String id) {
         Optional<SuperHero> superHero = getSuperHeroById.execute(id);
         if (superHero.isEmpty()) {
-            return ResponseEntity.ok().build();
+            throw new SuperHeroNotFoundException(String.format("SuperHero with id %s not found", id));
         }
         return ResponseEntity.ok().body(superHero.get());
     }
@@ -54,12 +55,12 @@ public class SuperHeroController {
         return ResponseEntity.ok().body(superHeroes);
     }
 
-    @DeleteMapping(value = "/superheroes/{id}")
+    @DeleteMapping(value = "/superhero/{id}")
     public void deleteSuperHero(@PathVariable String id) {
         deleteSuperHero.execute(id);
     }
 
-    @PutMapping(value = "/superheroes/{id}")
+    @PutMapping(value = "/superhero/{id}")
     public void updateSuperHero(@PathVariable String id, @RequestBody UpdateSuperHeroRequest updateSuperHeroRequest) {
         updateSuperHero.execute(id, updateSuperHeroRequest.getName());
     }
