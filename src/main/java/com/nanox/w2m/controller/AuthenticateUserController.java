@@ -1,5 +1,6 @@
 package com.nanox.w2m.controller;
 
+import com.nanox.w2m.actions.AuthenticateUser;
 import com.nanox.w2m.controller.requests.UserLoginInput;
 import com.nanox.w2m.domain.UserLogin;
 import org.springframework.http.MediaType;
@@ -19,12 +20,12 @@ import javax.annotation.Resource;
 public class AuthenticateUserController {
 
     @Resource(name = "authenticateUser")
-    private com.nanox.w2m.actions.AuthenticateUser authenticateUser;
+    private AuthenticateUser authenticateUser;
 
     @PostMapping(value = "/login")
     public ResponseEntity<UserLogin> login(@RequestBody UserLoginInput userLoginInput) {
         String token = authenticateUser.execute(userLoginInput.getUsername());
-        UserLogin user = new UserLogin(userLoginInput.getUsername(), token);
+        UserLogin user = UserLogin.from(userLoginInput.getUsername(), token);
         return ResponseEntity.ok().body(user);
     }
 

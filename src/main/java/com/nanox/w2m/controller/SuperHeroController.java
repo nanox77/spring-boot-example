@@ -2,9 +2,7 @@ package com.nanox.w2m.controller;
 
 import com.nanox.w2m.actions.*;
 import com.nanox.w2m.controller.requests.UpdateSuperHeroRequest;
-import com.nanox.w2m.controller.requests.UserLoginInput;
 import com.nanox.w2m.domain.SuperHero;
-import com.nanox.w2m.domain.UserLogin;
 import com.nanox.w2m.exceptions.SuperHeroNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

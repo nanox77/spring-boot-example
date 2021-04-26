@@ -1,6 +1,7 @@
 package com.nanox.w2m.actions;
 
 import com.nanox.w2m.configurations.JWTAuthorizationFilter;
+import com.nanox.w2m.exceptions.InvalidInputException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class AuthenticateUser {
 
     public String execute(String username) {
-        // validate against database if user exist
+        if (username == null || username.isEmpty()) throw new InvalidInputException("Username is required");
         return getJWTToken(username);
     }
 
