@@ -2,7 +2,9 @@ package com.nanox.w2m.controller;
 
 import com.nanox.w2m.actions.*;
 import com.nanox.w2m.controller.requests.UpdateSuperHeroRequest;
+import com.nanox.w2m.controller.requests.UserLoginInput;
 import com.nanox.w2m.domain.SuperHero;
+import com.nanox.w2m.domain.UserLogin;
 import com.nanox.w2m.exceptions.SuperHeroNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,13 +36,14 @@ public class SuperHeroController {
     @Resource(name = "getSuperHeroes")
     private GetSuperHeroes getSuperHeroes;
 
-    @GetMapping(value = "/superheroes")
+
+    @GetMapping(value = "/api/superheroes")
     public ResponseEntity<List<SuperHero>> getAll() {
         List<SuperHero> superHeroes = getSuperHeroes.execute();
         return ResponseEntity.ok().body(superHeroes);
     }
 
-    @GetMapping(value = "/superhero/{id}")
+    @GetMapping(value = "/api/superhero/{id}")
     public ResponseEntity<SuperHero> getById(@PathVariable String id) {
         Optional<SuperHero> superHero = getSuperHeroById.execute(id);
         if (superHero.isEmpty()) {
@@ -49,18 +52,18 @@ public class SuperHeroController {
         return ResponseEntity.ok().body(superHero.get());
     }
 
-    @GetMapping(value = "/superheroes/search")
+    @GetMapping(value = "/api/superheroes/search")
     public ResponseEntity<List<SuperHero>> getByName(@RequestParam("name") String name) {
         List<SuperHero> superHeroes = getSuperHeroByName.execute(name);
         return ResponseEntity.ok().body(superHeroes);
     }
 
-    @DeleteMapping(value = "/superhero/{id}")
+    @DeleteMapping(value = "/api/superhero/{id}")
     public void deleteSuperHero(@PathVariable String id) {
         deleteSuperHero.execute(id);
     }
 
-    @PutMapping(value = "/superhero/{id}")
+    @PutMapping(value = "/api/superhero/{id}")
     public void updateSuperHero(@PathVariable String id, @RequestBody UpdateSuperHeroRequest updateSuperHeroRequest) {
         updateSuperHero.execute(id, updateSuperHeroRequest.getName());
     }

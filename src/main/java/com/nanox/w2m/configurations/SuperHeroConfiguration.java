@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -21,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @Configuration
+@EnableWebSecurity
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.nanox.w2m.infrastructure"})
@@ -63,6 +65,11 @@ public class SuperHeroConfiguration {
     }
 
     @Bean
+    public AuthenticateUser authenticateUser() {
+        return new AuthenticateUser();
+    }
+
+    @Bean
     public Docket apiDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
@@ -70,4 +77,5 @@ public class SuperHeroConfiguration {
                 .paths(PathSelectors.any())
                 .build();
     }
+
 }
